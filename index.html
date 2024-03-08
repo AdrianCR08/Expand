@@ -7,44 +7,59 @@
   box-sizing: border-box;
 }
 
-/* Create two equal columns that float next to each other */
+.container {
+  position: relative;
+  width: 100%;
+}
+
 .column {
-  float: left;
+  position: absolute;
+  top: 0;
+  right: 0;
   width: 50%;
   padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
+  height: 300px;
+  overflow: hidden;
+  transition: width 0.5s ease;
 }
 
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
+.column.active {
+  width: 100%;
 }
 
-/* Style for the nested row */
+.row {
+  width: 100%;
+}
+
 .nested-row {
   width: 100%;
 }
 
-/* Style for the nested columns within the second column */
 .nested-column {
-  width: 100%; /* Make the nested columns 100% width */
+  width: 100%;
   padding: 10px;
-  height: 140px; /* Should be removed. Only for demonstration */
+  height: 140px;
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+  $(".column").click(function() {
+    $(this).toggleClass("active");
+  });
+});
+</script>
 </head>
 <body>
 
-<h2>Two Equal Columns with Nested Rows</h2>
+<h2>Column Slide Effect</h2>
 
-<div class="row">
+<div class="container">
   <div class="column" style="background-color:#aaa;">
-    <h2>Column 1</h2>
+    <h2>Column 1 (Click to Slide)</h2>
     <p>Some text..</p>
   </div>
-  <div class="column" style="background-color:#bbb;">
+  <div class="column" style="background-color:#bbb; display: none;">
     <div class="nested-row">
       <div class="nested-column" style="background-color:#ccc;">
         <h2>Row 1</h2>
