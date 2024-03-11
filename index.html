@@ -3,13 +3,11 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-* {
-  box-sizing: border-box;
-}
-
 .container {
   position: relative;
-  width: 100%;
+  height: 100vh;
+  border-radius: 10px !important;
+  overflow: hidden; 
 }
 
 .column {
@@ -17,35 +15,65 @@
   top: 0;
   right: 0;
   width: 50%;
-  padding: 10px;
-  height: 300px;
-  overflow: hidden;
-  transition: width 0.5s ease;
+  height: 100%;
+  transition: right 0.5s;
+  /* border-radius: 10px; */
+  box-shadow:  0px 0px 10px rgba(0, 0, 0, 1);
 }
 
-.column.active {
-  width: 100%;
+.column2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+  transition: width 0.5s;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; 
+  /* border-radius: 10px; */
+  box-shadow:  0px 0px 10px rgba(0, 0, 0, 1);
+
+  .Biencel_boton{
+    object-position: left !important;
+  }
 }
 
-.row {
-  width: 100%;
+.column2 > div {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.nested-row {
-  width: 100%;
+.column2 > div:first-child {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.nested-column {
-  width: 100%;
-  padding: 10px;
-  height: 140px;
+.column2 > div:last-child {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(document).ready(function() {
+  var isSecondColumnVisible = false;
   $(".column").click(function() {
-    $(this).toggleClass("active");
+    if (!isSecondColumnVisible) {
+      $(this).animate({ right: '50%' }, 500);
+      $(".column2").animate({ width: '50%' }, 500);
+      isSecondColumnVisible = true;
+    } else {
+      $(this).animate({ right: '0' }, 500);
+      $(".column2").animate({ width: '0' }, 500);
+      isSecondColumnVisible = false;
+    }
   });
 });
 </script>
@@ -55,22 +83,22 @@ $(document).ready(function() {
 <h2>Column Slide Effect</h2>
 
 <div class="container">
-  <div class="column" style="background-color:#aaa;">
-    <h2>Column 1 (Click to Slide)</h2>
-    <p>Some text..</p>
+  <div class="column" style="background-color: #fc7300; width: fit-content; height: fit-content;">
+    <img class="Biencel_boton" src="imagenes/Gana-biencel/GANA_VENDIENDO_BIENCEL.png" width="335px" height="225px">
   </div>
-  <div class="column" style="background-color:#bbb; display: none;">
-    <div class="nested-row">
-      <div class="nested-column" style="background-color:#ccc;">
-        <h2>Row 1</h2>
-        <p>Some text..</p>
-      </div>
+  <div class="column2" style="background-color: #fc7300; width:fit-content; height: fit-content;">
+    <div>
+      <p>Your first paragraph here.</p> <!-- Add this line -->
+      <img class="Edificio" src="imagenes/Gana-biencel/biencel-distribuidores--EDIFICIO.png.png" width="167.5px" height="112.5px" alt="">
+      <p>Your second paragraph here.</p> <!-- Add this line -->
+      <br>
+      <p>Your third paragraph here.</p> <!-- Add this line -->
     </div>
-    <div class="nested-row">
-      <div class="nested-column" style="background-color:#ddd;">
-        <h2>Row 2</h2>
-        <p>Some text..</p>
-      </div>
+    <div>
+      <p>Your fourth paragraph here.</p> <!-- Add this line -->
+      <p>Your fifth paragraph here.</p> <!-- Add this line -->
+      <p>Your sixth paragraph here.</p> <!-- Add this line -->
+      <img class="like" src="imagenes/Gana-biencel/distribuidor_biencel_like.png" width="120px" height="112.5px" alt="">
     </div>
   </div>
 </div>
